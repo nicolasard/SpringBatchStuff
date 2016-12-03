@@ -1,8 +1,6 @@
 @ECHO OFF
 echo SETEANDO VARIABLES DE ENTORNO JAVA Y TOMCAT
 
-:: SET APP_HOME=C:\Users\Nico\workspace\WORK\GireAPI
-
 SET JAVA_HOME=C:\Program Files\Java\jdk1.8.0_31
 SET JRE_HOME=C:\Program Files\Java\jdk1.8.0_31
 
@@ -16,3 +14,10 @@ SET MAVEN_HOME=D:\BASE\apache-maven-3.3.9
 
 :: Set Path variable
 SET PATH=%Path%;%MAVEN_HOME%\bin;%ANT_HOME%\bin;%JAVA_HOME%\bin;%CATALINA_HOME%;%CATALINA_BASE%
+
+SET APP_HOME=C:\Users\Nico\Desktop\SpringBanchStuff\SB_Ejemplo1\
+
+SET CLASSPATH=%CLASSPATH%;%APP_HOME%/target/dependency/*
+SET CLASSPATH=%CLASSPATH%;%APP_HOME%/target/*
+SET CLASSPATH=%CLASSPATH%;%APP_HOME%/target/ejemplo1-1.0-SNAPSHOT.jar
+SET CLASSPATH=%CLASSPATH%;%APP_HOME%

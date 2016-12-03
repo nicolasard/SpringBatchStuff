@@ -15,10 +15,30 @@
         <artifactId>spring-batch-core</artifactId>
         <version>3.0.7.RELEASE</version>
     </dependency>
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<version>1.4.0.RC1</version>
-	</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>3.0.7.RELEASE</version>
+</dependency>
   </dependencies>
+     <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <phase>process-sources</phase>
+
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+
+                            <configuration>
+                                <outputDirectory>${targetdirectory}</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
