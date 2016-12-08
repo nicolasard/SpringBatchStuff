@@ -4,21 +4,22 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans.xsd
    http://www.springframework.org/schema/task
-   http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+   http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
 
 	<import resource="JobDefinition_ReadFile.xml" />
 
 	<bean id="taskReadFile" class="com.springbatch.common.SimpleLauncher">
-		<property name="job" ref="cierreArchivoBanco" />
-		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="job" ref="ReadFile" />
+
 	</bean>
+    
 
 	<task:executor id="executor" pool-size="10"	queue-capacity="10" />
     
 	<task:scheduler id="scheduler" pool-size="1" />
 	
     <task:scheduled-tasks scheduler="scheduler">
-		<task:scheduled ref="taskReadFile" method="launch" cron="0 0/30 * * * MON-FRI" />
+		<task:scheduled ref="taskReadFile" method="launch" cron="*/5 * * * * *" />
 	</task:scheduled-tasks>
 </beans>
