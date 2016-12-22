@@ -5,15 +5,20 @@
    http://www.springframework.org/schema/beans/spring-beans.xsd
    http://www.springframework.org/schema/task
    http://www.springframework.org/schema/task/spring-task-4.0.xsd">
-
+    
+    <!-- As i dont need to comunicate i set no transaction manager. (ResourcelessTransactionManager) -->
+    <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+    
+    <bean id="jobRepository"
+        class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+    </bean>
 
 	<import resource="JobDefinition_ReadFile.xml" />
 
 	<bean id="taskReadFile" class="com.springbatch.common.SimpleLauncher">
 		<property name="job" ref="ReadFile" />
-
+        <property name="JobLauncher" ref="jobRepository" />
 	</bean>
-    
 
 	<task:executor id="executor" pool-size="10"	queue-capacity="10" />
     

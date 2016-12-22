@@ -5,25 +5,28 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-http://www.springframework.org/schema/beans        
-http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-http://www.springframework.org/schema/batch 
-http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-
-<bean id="jobRepository"  class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
-    <property name="transactionManager" ref="transactionManager"/>
-</bean>
- <bean id="transactionManager"
-	class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+    http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    
+    
 <batch:job id="ReadFile" restartable="false">
+<batch:step id="step1">
+        <batch:tasklet ref="StartTaskletBean"/>
+</batch:step>
+<!-- 
     <batch:step id="step1">
-        <batch:tasklet transaction-manager="transactionManager">
+        <batch:tasklet>
             <batch:chunk reader="cvsFileItemReader" writer="cvsFileItemWriter" commit-interval="100"/>
         </batch:tasklet>
     </batch:step>
+ -->
 </batch:job>
+    
+     <bean id="StartTaskletBean" class="com.springbatch.common.StartTasklet" />
     
 <bean id="cvsFileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
 
