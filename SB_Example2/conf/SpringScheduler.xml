@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/task
+   http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+   
+	<import resource="JobRepository.xml" />
+	<import resource="JobDefinition_ReadFile.xml" />
+
+	<bean id="taskReadFile" class="com.springbatch.common.SimpleLauncher">
+		<property name="job" ref="ReadFile" />
+        <property name="JobLauncher" ref="jobLauncher" />
+	</bean>
+
+	<task:executor id="executor" pool-size="10"	queue-capacity="10" />
+    
+	<task:scheduler id="scheduler" pool-size="1" />
+	
+    <task:scheduled-tasks scheduler="scheduler">
+		<task:scheduled ref="taskReadFile" method="launch" cron="*/5 * * * * *" />
+	</task:scheduled-tasks>
+</beans>
