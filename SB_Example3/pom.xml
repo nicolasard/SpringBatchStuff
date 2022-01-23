@@ -9,7 +9,7 @@
   <name>SB_Example3 application</name>
   <url>http://maven.apache.org</url>
   <properties>
-      <spring.batch.version>3.0.6.RELEASE</spring.batch.version>
+      <spring.batch.version>4.0.0.RELEASE</spring.batch.version>
       <spring-framework.version>5.3.14</spring-framework.version>
   </properties>
   <dependencies>
